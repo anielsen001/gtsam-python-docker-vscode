@@ -1,6 +1,15 @@
 # Get the base Ubuntu image from Docker Hub.
-# I know that focal works (the current latest -- Nov 2020)
-FROM ubuntu:focal
+# ubuntu 22.04 
+# - python 3.10
+# - cmake 3.22.1
+# - boost 1.74.0
+# for GTSAM 4.2a9 
+#
+# I tried with GTSAM 4.1.1 and this config and the build failed 
+# with errors I think related to this boost issue
+# ubuntu 22.04 uses boost 1.74, GTSAM 4.1.1 issue does not occur with 1.73.0
+# https://github.com/boostorg/serialization/issues/217
+FROM ubuntu:22.04
 
 # Disable GUI prompts
 ENV DEBIAN_FRONTEND noninteractive

@@ -1,8 +1,9 @@
-FROM cntaylor/with-libraries-for-gtsam-python
+FROM anielsen/with-libraries-for-gtsam-python
 
+# specify GTSAM version after branch
 # Clone GTSAM (develop branch)
 WORKDIR /usr/src
-RUN git clone --single-branch --branch develop https://github.com/borglab/gtsam.git
+RUN git clone --depth 1 --branch 4.2a9 https://github.com/borglab/gtsam.git
 
 # Change to build directory. Will be created automatically.
 WORKDIR /usr/src/gtsam/build
@@ -18,7 +19,7 @@ RUN cmake \
     ..
 
 # Build and install gtsam code
-RUN make -j4 install && make -j4 python-install && make clean
+RUN make -j12 install && make -j4 python-install && make clean
 
 # Needed to link with GTSAM
 ENV LD_LIBRARY_PATH /usr/local/lib
