@@ -2,12 +2,12 @@
 # gtsam, I have to get >90% of them anyhow just to have cmake
 # run so that I can tell it to make the docs, so this is probably
 # easier.
-FROM cntaylor/with-libraries-for-gtsam-python
+FROM anielsen/with-libraries-for-gtsam-python
 
 RUN apt-get -y install doxygen graphviz
 
 WORKDIR /usr/src
-RUN git clone --single-branch --branch develop https://github.com/borglab/gtsam.git
+RUN git clone --depth 1 --branch 4.2a9 https://github.com/borglab/gtsam.git
 
 # Change to build directory. Will be created automatically.
 WORKDIR /usr/src/gtsam/build
