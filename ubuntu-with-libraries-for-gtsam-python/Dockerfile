@@ -17,6 +17,9 @@ ENV DEBIAN_FRONTEND noninteractive
 # Update apps on the base image
 RUN apt-get -y update && apt-get -y install
 
+# Install x11
+RUN apt-get install -y x11-*
+
 # Install C++, cmake, and apt-utils
 # apt-utils is requires for libtbb...
 RUN apt-get -y install build-essential cmake apt-utils
@@ -39,7 +42,7 @@ RUN apt-get -y install libtbb-dev
 RUN apt-get -y install git
 
 # Install pip
-RUN apt-get install -y python3-pip python3-dev
+RUN apt-get install -y python3-pip python3-dev python3-tk
 
 # Note that these two libraries are actually pulled
 # from /usr/src/gtsam/python/requirements.txt after
@@ -55,3 +58,4 @@ RUN python3 -m pip install numpy pyparsing
 # ipython is not strictly necessary, but I sure like it there
 RUN python3 -m pip install matplotlib pylint ipykernel && \
     python3 -m pip install ipython
+
